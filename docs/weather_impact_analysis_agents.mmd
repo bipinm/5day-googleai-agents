@@ -1,0 +1,90 @@
+graph TB
+    RootAgent[Root Agent<br/>Weather_Impact_Mitigator<br/>gemini-2.5-flash]
+
+    RootAgent --> RiskAnalyzer[Weather_Risk_Analyzer Agent<br/>gemini-2.5-flash<br/>LLMAgent]
+    RootAgent --> WorkOrderAgent[Work_Order_Agent<br/>gemini-2.5-flash<br/>LLMAgent]
+
+    subgraph Weather_Input[Weather Event Input]
+        Input[Weather Event JSON:<br/>temperature_c, wind_speed_kmh,<br/>precipitation_mm, humidity_percent,<br/>duration_hours, event_type,<br/>severity, location]
+    end
+
+    Input --> RootAgent
+
+    subgraph Risk_Analysis_Flow[Risk Analysis Flow - Sequential Steps]
+        RiskAnalyzer --> Step1[Step 1: Find Similar Events]
+        Step1 --> Step2[Step 2: Analyze Historical Impacts]
+        Step2 --> Step3[Step 3: Predict At-Risk Assets]
+    end
+
+    subgraph Similar_Events[Find Similar Historical Events]
+        Step1 --> T1[find_similar_weather_events]
+        T1 --> KNN[WeatherKNN Algorithm<br/>K-Nearest Neighbors<br/>Euclidean Distance]
+        KNN --> HistData[(Historical Weather Events CSV<br/>Z-score Normalized Features)]
+        T1 --> Output1[Output: Similar Events<br/>event_ids, similarity_distance,<br/>event details]
+    end
+
+    subgraph Historical_Impact[Analyze Historical Impacts]
+        Step2 --> T2[analyze_affected_assets]
+        T2 --> ImpactAnalyzer[AssetImpactAnalyzer]
+        ImpactAnalyzer --> Assets[(Assets CSV)]
+        ImpactAnalyzer --> Incidents[(Historical Incidents CSV)]
+        T2 --> Output2[Output: Risk Analysis<br/>total_incidents,<br/>by_asset_type,<br/>by_criticality,<br/>by_damage_severity,<br/>high_risk_assets,<br/>total_cost, downtime]
+    end
+
+    subgraph Prediction[Predict At-Risk Assets]
+        Step3 --> T3[predict_at_risk_assets]
+        T3 --> RiskScoring[Risk Scoring Algorithm:<br/>- Historical incident count 40%<br/>- Condition risk 30%<br/>- Age risk 20%<br/>- Criticality weight 10%]
+        T3 --> Output3[Output: At-Risk Assets<br/>code, name, type, category,<br/>risk_score, criticality,<br/>condition_score,<br/>historical_incident_count]
+    end
+
+    Output3 --> RiskSummary[Risk Analysis JSON Summary:<br/>events, affected_asset_types,<br/>historical_impact_patterns,<br/>estimated_downtime_hours,<br/>estimated_repair_cost,<br/>number_of_at_risk_assets,<br/>incident_statistics,<br/>top_at_risk_assets]
+
+    RiskSummary --> WorkOrderAgent
+
+    subgraph WorkOrder_Creation[Work Order Creation]
+        WorkOrderAgent --> T4[create_work_order]
+        T4 --> CMMSAPI1[CMMS API: Create Work Order]
+        CMMSAPI1 --> WO_Created[Work Order Created<br/>Type: INSPECTION<br/>Priority: Based on Risk<br/>Assets: At-risk assets list]
+    end
+
+    subgraph WorkActivity_Creation[Work Activity Creation]
+        WorkOrderAgent --> T5[create_work_activity]
+        T5 --> CMMSAPI2[CMMS API: Create Work Activity]
+        CMMSAPI2 --> WA_Created[Work Activities Created<br/>One per asset requiring inspection<br/>Problem Type: SAFETY<br/>Duration: Estimated minutes]
+    end
+
+    subgraph State_Management[Context State - Shared Across Agents]
+        StateStore[(ToolContext State Storage)]
+        StateStore -.->|Stores| S1[weather_parameters]
+        StateStore -.->|Stores| S2[similar_events]
+        StateStore -.->|Stores| S3[risk_analysis]
+        StateStore -.->|Stores| S4[at_risk_assets]
+        StateStore -.->|Stores| S5[work_order_id]
+    end
+
+    Output1 -.-> StateStore
+    Output2 -.-> StateStore
+    Output3 -.-> StateStore
+    WO_Created -.-> StateStore
+
+    WO_Created --> FinalOutput
+    WA_Created --> FinalOutput[Output:<br/>work_order_id,<br/>number of activities created,<br/>summary of risk mitigation actions]
+
+    classDef agentClass fill:#e1f5ff,stroke:#0288d1,stroke-width:2px
+    classDef toolClass fill:#fff9c4,stroke:#f57f17,stroke-width:2px
+    classDef algorithmClass fill:#e8eaf6,stroke:#3f51b5,stroke-width:2px
+    classDef dataClass fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    classDef apiClass fill:#fce4ec,stroke:#c2185b,stroke-width:2px
+    classDef outputClass fill:#e8f5e9,stroke:#388e3c,stroke-width:2px
+    classDef stateClass fill:#ffe0b2,stroke:#e64a19,stroke-width:2px
+    classDef inputClass fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+
+    class RootAgent,RiskAnalyzer,WorkOrderAgent agentClass
+    class T1,T2,T3,T4,T5 toolClass
+    class KNN,ImpactAnalyzer,RiskScoring algorithmClass
+    class HistData,Assets,Incidents dataClass
+    class CMMSAPI1,CMMSAPI2 apiClass
+    class Output1,Output2,Output3,RiskSummary,WO_Created,WA_Created,FinalOutput outputClass
+    class StateStore,S1,S2,S3,S4,S5 stateClass
+    class Input inputClass
+    class MetaAgent,SupervisorAgent,PredictiveAgent,CostAgent,SupplyChainAgent,FeedbackLoop,RAGAgent,QAAgent futureClass

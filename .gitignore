@@ -1,0 +1,13 @@
+*.log
+.env
+google-account-file.json
+.DS_Store
+temp/
+tmp/
+tutorials/
+output/
+.idea/
+.vscode/
+node_modules/
+**local
+**tests

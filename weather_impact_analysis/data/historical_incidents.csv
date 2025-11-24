@@ -1,0 +1,50 @@
+incident_id,event_id,asset_code,impact_type,damage_severity,downtime_hours,repair_cost_usd,description
+I001,1,A003,Physical Damage,Medium,12,15000,Overhead line sagging due to heavy rain and weight
+I002,1,A006,Flooding,Low,6,5000,Track waterlogging causing minor delays
+I003,2,A003,Physical Damage,Critical,48,75000,Power line downed by strong winds
+I004,2,A004,Physical Damage,Critical,36,65000,Power line structural damage
+I005,2,A011,Structural Damage,Medium,24,30000,Bridge support weakened by wind pressure
+I006,3,A006,Ice Damage,High,18,25000,Ice accumulation on tracks affecting operations
+I007,3,A008,Ice Damage,Critical,36,45000,Severe ice damage requiring track replacement
+I008,3,A020,Mechanical Failure,High,12,18000,Switch points frozen and inoperable
+I009,4,A001,Power Surge,Medium,8,20000,Transformer affected by lightning strike
+I010,4,A009,Electronic Failure,Low,4,8000,Signal box electronics damaged
+I011,5,A003,Physical Damage,High,30,55000,Overhead line damaged by extreme precipitation
+I012,5,A006,Flooding,Critical,48,60000,Severe track flooding requiring repairs
+I013,5,A007,Flooding,High,24,35000,Track section submerged
+I014,6,A001,Overheating,High,16,42000,Transformer overheating in extreme heat
+I015,6,A003,Expansion Damage,Medium,12,22000,Power line expansion causing connector stress
+I016,6,A006,Track Warping,High,20,38000,Rails warped due to extreme temperature
+I017,7,A002,Power Surge,Medium,10,18000,Substation affected by lightning
+I018,7,A010,Electronic Failure,Low,6,9000,Signal equipment damaged
+I019,8,A003,Physical Damage,Critical,40,70000,Multiple power line failures due to wind
+I020,8,A004,Physical Damage,Critical,44,72000,Extensive power line damage
+I021,8,A012,Structural Damage,High,20,32000,Bridge structural integrity compromised
+I022,9,A003,Physical Damage,Medium,14,18000,Minor overhead line damage from rain
+I023,9,A007,Flooding,Medium,18,28000,Track waterlogging and minor structural issues
+I024,10,A008,Ice Damage,Critical,40,50000,Extensive ice damage to old track section
+I025,10,A011,Ice Damage,High,28,35000,Bridge deck ice accumulation damage
+I026,10,A020,Mechanical Failure,Critical,16,22000,Switch points completely frozen
+I027,11,A003,Physical Damage,Critical,36,68000,Wind damage to overhead power lines
+I028,11,A004,Physical Damage,High,28,58000,Significant power line structural damage
+I029,12,A006,Flooding,Low,8,6000,Minor track flooding
+I030,12,A018,Water Ingress,Low,4,4000,Cable junction box water seepage
+I031,13,A001,Power Surge,Medium,10,21000,Lightning strike near transformer
+I032,13,A016,Power Surge,Low,6,12000,Substation minor surge damage
+I033,14,A003,Physical Damage,High,32,58000,Severe rain damage to power infrastructure
+I034,14,A006,Flooding,Critical,52,65000,Extensive flooding requiring major repairs
+I035,14,A007,Flooding,Critical,40,52000,Critical flood damage to track
+I036,15,A001,Overheating,High,18,45000,Severe transformer overheating
+I037,15,A006,Track Warping,High,22,40000,Extensive rail warping from heat
+I038,16,A003,Physical Damage,Critical,38,72000,Power line system failure from winds
+I039,16,A004,Physical Damage,Critical,42,75000,Complete power line section failure
+I040,17,A009,Electronic Failure,Medium,8,11000,Signal box storm damage
+I041,18,A003,Physical Damage,Medium,16,19000,Rain-related power line issues
+I042,18,A007,Flooding,Medium,20,30000,Track flooding affecting operations
+I043,19,A006,Ice Damage,Critical,44,52000,Severe ice damage to critical track
+I044,19,A008,Ice Damage,Critical,48,58000,Catastrophic ice damage to aging track
+I045,19,A011,Ice Damage,Critical,32,42000,Critical bridge ice damage
+I046,20,A003,Physical Damage,Critical,46,78000,Extreme wind damage to power lines
+I047,20,A004,Physical Damage,Critical,50,80000,Complete power line destruction
+I048,20,A012,Structural Damage,Critical,28,38000,Severe bridge damage from wind forces
+

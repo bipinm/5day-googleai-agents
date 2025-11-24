@@ -1,0 +1,22 @@
+event_id,date,event_type,temperature_c,wind_speed_kmh,precipitation_mm,humidity_percent,duration_hours,severity,location_lat,location_lon
+1,2024-01-15,Heavy Rain,12,35,85,92,6,High,51.5074,-0.1278
+2,2024-02-03,Strong Wind,8,95,5,65,4,Critical,51.5074,-0.1278
+3,2024-03-20,Ice Storm,-2,45,15,88,12,Critical,51.5074,-0.1278
+4,2024-04-12,Thunderstorm,18,65,45,85,3,High,51.5074,-0.1278
+5,2024-05-08,Heavy Rain,15,40,92,95,8,Critical,51.5074,-0.1278
+6,2024-06-22,Extreme Heat,38,15,0,45,72,High,51.5074,-0.1278
+7,2024-07-14,Thunderstorm,22,70,55,90,2,High,51.5074,-0.1278
+8,2024-08-05,Strong Wind,20,105,10,60,5,Critical,51.5074,-0.1278
+9,2024-09-18,Heavy Rain,14,38,78,93,7,High,51.5074,-0.1278
+10,2024-10-25,Ice Storm,-1,50,20,90,10,Critical,51.5074,-0.1278
+11,2024-11-02,Strong Wind,10,88,8,68,6,Critical,51.5074,-0.1278
+12,2024-01-28,Heavy Rain,11,30,80,91,5,High,51.5074,-0.1278
+13,2024-03-05,Thunderstorm,16,60,50,87,4,High,51.5074,-0.1278
+14,2024-04-20,Heavy Rain,13,42,88,94,9,Critical,51.5074,-0.1278
+15,2024-06-10,Extreme Heat,36,18,0,42,48,High,51.5074,-0.1278
+16,2024-07-28,Strong Wind,19,92,12,62,7,Critical,51.5074,-0.1278
+17,2024-09-03,Thunderstorm,21,68,48,89,3,High,51.5074,-0.1278
+18,2024-10-12,Heavy Rain,12,36,82,92,6,High,51.5074,-0.1278
+19,2024-11-20,Ice Storm,-3,48,18,89,11,Critical,51.5074,-0.1278
+20,2024-02-14,Strong Wind,9,98,7,66,5,Critical,51.5074,-0.1278
+

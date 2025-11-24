@@ -1,0 +1,6 @@
+google-adk
+opentelemetry-instrumentation-google-genai
+pandas
+numpy
+python-dotenv
+requests

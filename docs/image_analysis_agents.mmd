@@ -1,0 +1,110 @@
+graph TB
+    RootAgent[Root Agent<br/>gemini-2.5-flash-lite]
+
+    RootAgent --> Orchestrator[Orchestrator Agent<br/>SequentialAgent]
+
+    subgraph Sequential_Flow[Sequential Agent Flow]
+        Orchestrator --> PrimaryClassifier[Primary Classifier Agent<br/>gemini-2.5-flash<br/>LLMAgent]
+        PrimaryClassifier --> ProblemDetector[Problem Detector Agent<br/>gemini-2.5-flash-lite<br/>LLMAgent]
+        ProblemDetector --> ProblemsProcessor[Problems Processor Agent<br/>ParallelAgent]
+    end
+
+    subgraph Primary_Classification[Primary Classification]
+        PrimaryClassifier --> T1[vertex_ai_image_classifier]
+        T1 --> VertexAPI[Vertex AI Vision API]
+        T1 --> Output1[Output: Classification]
+    end
+
+    subgraph Problem_Detection[Problem Detection Tools]
+        ProblemDetector --> T2[roboflow_detect]
+        T2 --> RoboflowAPI[Roboflow API]
+        T2 --> Output2[Output: Detections with<br/>class, confidence,<br/>bounding boxes]
+    end
+
+    subgraph Parallel_Processing[Parallel Processing - 1]
+        ProblemsProcessor --> WorkOrderAgent[Work Order Agent<br/>gemini-2.5-flash<br/>LLMAgent]
+        ProblemsProcessor --> SummarizerAgent[Problem Summarizer Agent<br/>gemini-2.5-flash-lite<br/>LLMAgent]
+    end
+
+    subgraph WorkOrder_Flow[Work Order Creation Flow]
+        WorkOrderAgent --> T3[create_work_order_from_problems]
+        T3 --> CMMSAPI1[API: Work Order]
+        T3 --> WO_Created[Work Order Created with Markdown summary]
+
+        WorkOrderAgent --> FollowupAgent[Work Order Followup Agent<br/>ParallelAgent]
+    end
+
+    subgraph Followup_Parallel[Parallel Processing - 2]
+        FollowupAgent --> AnnotatorAgent[Problem Annotator Agent<br/>gemini-2.5-flash-lite<br/>LLMAgent]
+        FollowupAgent --> ActivityAgent[Work Activity Agent<br/>gemini-2.5-flash<br/>LLMAgent]
+    end
+
+    subgraph Annotator_Flow[Image Annotation Flow]
+        AnnotatorAgent --> T4[annotate_bounding_boxes]
+        T4 --> ImageProcessing[PIL Image Processing]
+        T4 --> AnnotatedImage[Annotated Image Created]
+
+        AnnotatorAgent --> T5[upload_image_to_work_order]
+        T5 --> CMMSAPI2[API: Upload Image]
+        T5 --> ImageUploaded[Image Uploaded to Work Order]
+    end
+
+    subgraph Activity_Flow[Work Activity Creation Flow]
+        ActivityAgent --> T6[create_work_activity_from_problem]
+        T6 --> CMMSAPI3[API: Work Activity]
+        T6 --> Activities[Multiple Activities Created<br/>One per detected problem]
+    end
+
+    subgraph Summarizer_Flow[Problem Summarization]
+        SummarizerAgent --> Summary[Generate Summary<br/>from detection classes & confidence]
+    end
+
+    subgraph State_Management[Context State - Shared Across Agents]
+        StateStore[(ToolContext State Storage)]
+        StateStore -.->|Stores| S1[input_image_path]
+        StateStore -.->|Stores| S2[primary_classification]
+        StateStore -.->|Stores| S3[problems_detected]
+        StateStore -.->|Stores| S4[work_order_id]
+        StateStore -.->|Stores| S5[annotated_image_path]
+    end
+
+    subgraph Future_Enhancements[Future Enhancements]
+        MetaAgent[Meta Agent<br/>Dynamic Workflow Composition]
+        SupervisorAgent[Supervisor Agent<br/>Self-Healing & Optimization]
+        MultiModalAgent[Multi-Modal Input Agent<br/>(Audio, Sensor, Text)]
+        SupplyChainAgent[Supply Chain Agent]
+        FeedbackLoop[Human-in-the-Loop<br/>Feedback Mechanism]
+        RAGAgent[RAG Agent<br/>Deeper Insights]
+        QAAgent[QA & Performance Agent]
+    end
+
+    WO_Created -.-> StateStore
+    AnnotatedImage -.-> StateStore
+    Output1 -.-> StateStore
+    Output2 -.-> StateStore
+
+    Activities --> FinalOutput
+    Summary --> FinalOutput[Markdown Summary with<br/>Work Order ID,<br/>Activities Created,<br/>Problem Summary]
+
+    classDef agentClass fill:#e1f5ff,stroke:#0288d1,stroke-width:2px
+    classDef toolClass fill:#fff9c4,stroke:#f57f17,stroke-width:2px
+    classDef apiClass fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    classDef outputClass fill:#e8f5e9,stroke:#388e3c,stroke-width:2px
+    classDef stateClass fill:#ffe0b2,stroke:#e64a19,stroke-width:2px
+    classDef futureClass fill:#dcedc8,stroke:#558b2f,stroke-width:2px,linestyle:dashed
+
+    class RootAgent,Orchestrator,PrimaryClassifier,ProblemDetector,ProblemsProcessor,WorkOrderAgent,SummarizerAgent,FollowupAgent,AnnotatorAgent,ActivityAgent agentClass
+    class T1,T2,T3,T4,T5,T6 toolClass
+    class VertexAPI,RoboflowAPI,CMMSAPI1,CMMSAPI2,CMMSAPI3 apiClass
+    class Output1,Output2,WO_Created,AnnotatedImage,ImageUploaded,Activities,Summary,FinalOutput outputClass
+    class StateStore,S1,S2,S3,S4,S5 stateClass
+    class MetaAgent,SupervisorAgent,MultiModalAgent,SupplyChainAgent,FeedbackLoop,RAGAgent,QAAgent futureClass
+
+    RootAgent -.-> MetaAgent
+    RootAgent -.-> SupervisorAgent
+    RootAgent -.-> MultiModalAgent
+    WorkOrderAgent -.-> SupplyChainAgent
+    FinalOutput -.-> FeedbackLoop
+    ProblemDetector -.-> RAGAgent
+    RAGAgent -.-> WorkOrderAgent
+    FinalOutput -.-> QAAgent

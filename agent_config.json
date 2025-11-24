@@ -1,0 +1,51 @@
+{
+  "image_classifier_models": [
+    {
+      "ElectricityDistribution": [
+        {
+          "tower_defect": "tower-defect/1"
+        },
+        {
+          "fault-insulator": "fault-insulator/2"
+        },
+        {
+          "cable-damage": "cable-damage/1"
+        },
+        {
+          "fault-detection-1": "one-grjnp/1"
+        },
+        {
+          "fault-detection-2": "fault detection"
+        }
+      ]
+    },
+    {
+      "PCB": [
+        {
+          "defect-detection": "circuit-board-defect-detection/1"
+        }
+      ]
+    },
+    {
+      "RailwayTrack": [
+        {
+          "defect-detection": "defect-detection-yjplx/2"
+        }
+      ]
+    },
+    {
+      "TrainWagon": [
+        {
+          "wheel-defect": "wagon-detection-eh2ov/1"
+        }
+      ]
+    },
+    {
+      "TrainWheel": [
+        {
+          "wheel-defect": "wheel-defect/1"
+        }
+      ]
+    }
+  ]
+}

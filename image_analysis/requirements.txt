@@ -1,0 +1,6 @@
+google-adk
+google-cloud-aiplatform
+opentelemetry-instrumentation-google-genai
+python-dotenv
+requests
+Pillow

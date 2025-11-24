@@ -1,0 +1,22 @@
+code,name,type,category,location_lat,location_lon,installation_date,condition_score,criticality
+A001,Main Transformer Station,Transformer,ElectricityDistribution,51.5074,-0.1278,2010-03-15,7.5,Critical
+A002,North Substation,Substation,ElectricityDistribution,51.5174,-0.1278,2017-06-20,8.2,High
+A003,Overhead Power Line Segment 1,PowerLine,ElectricityDistribution,51.5074,-0.1378,2005-01-10,6.8,Critical
+A004,Overhead Power Line Segment 2,PowerLine,ElectricityDistribution,51.5074,-0.1178,2007-04-25,7.0,Critical
+A005,Distribution Panel Zone A,DistributionPanel,ElectricityDistribution,51.5074,-0.1278,2020-09-12,9.0,Medium
+A006,Railway Track Section 1,Track,Railway,51.5074,-0.1278,2000-05-08,6.5,Critical
+A007,Railway Track Section 2,Track,Railway,51.5174,-0.1278,2013-11-30,8.0,High
+A008,Railway Track Section 3,Track,Railway,51.4974,-0.1278,1995-07-14,5.8,Critical
+A009,Signal Box North,SignalBox,Railway,51.5174,-0.1278,2015-02-18,8.5,High
+A010,Signal Box South,SignalBox,Railway,51.4974,-0.1278,2010-08-05,7.2,High
+A011,Railway Bridge A,Bridge,Railway,51.5074,-0.1378,1985-12-10,6.0,Critical
+A012,Railway Bridge B,Bridge,Railway,51.5074,-0.1178,1990-03-22,6.5,Critical
+A013,Passenger Train PT-101,Train,Railway,51.5074,-0.1278,2017-10-15,8.8,High
+A014,Freight Train FT-205,Train,Railway,51.5074,-0.1278,2013-04-08,7.5,Medium
+A015,Maintenance Vehicle MV-003,MaintenanceVehicle,Railway,51.5074,-0.1278,2020-01-25,9.2,Medium
+A016,East Substation,Substation,ElectricityDistribution,51.5074,-0.1178,2019-07-12,8.5,High
+A017,West Substation,Substation,ElectricityDistribution,51.5074,-0.1378,2015-05-20,7.8,High
+A018,Underground Cable Segment 1,Cable,ElectricityDistribution,51.5074,-0.1278,2013-09-03,8.0,Medium
+A019,Underground Cable Segment 2,Cable,ElectricityDistribution,51.5174,-0.1278,2010-11-18,7.5,Medium
+A020,Railway Switch Point A,Switch,Railway,51.5174,-0.1278,2017-12-06,8.3,High
+
